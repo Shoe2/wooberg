@@ -1,25 +1,25 @@
 const express = require('express');
+const MongoClient = require('mongodb').MongoClient;
+const config = require('./environment/default');
+
 const app = express();
 const port = process.env.PORT || 8082;
-const mongoose = require('mongoose');
-const config = require('./environment/default');
 const uri = config.mongoString;
-
-app.get('/', (req, res) => res.send('Hello world!'));
-
+const client = new MongoClient(uri, { useNewUrlParser: true });
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
-
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-const connection = mongoose.connection;
-
-connection.once('open', function() {
-    console.log("MongoDB database connection established successfully");
+app.get('/formats', (req, res) => {
+    let formats;
+    client.connect(() => {
+        const collection = client.db("WOOBERG").collection("Formats");
+        let cursor = collection.find({});
+        cursor.toArray(function (err, docs) {
+            formats = docs;
+        });
+    });
+    client.close();
+    res.send(formats);
 });
-
-
-
-
 
 
