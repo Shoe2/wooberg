@@ -1,10 +1,9 @@
-
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8082;
 const mongoose = require('mongoose');
-const config = require('environment');
-const uri = config.get('mongoURI');
+const config = require('./environment/default');
+const uri = config.mongoString;
 
 app.get('/', (req, res) => res.send('Hello world!'));
 
@@ -17,7 +16,7 @@ const connection = mongoose.connection;
 
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
-})
+});
 
 
 
