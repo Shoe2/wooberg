@@ -4,7 +4,7 @@ export default class AddFormatComponent extends Component {
     render() {
         return (
             <div>
-                <p>Welcome to Todos List Component!!</p>
+                <p>Welcome to add format Component!!</p>
             </div>
         )
     }

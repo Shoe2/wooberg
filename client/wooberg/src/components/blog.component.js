@@ -4,7 +4,7 @@ export default class BlogComponent extends Component {
     render() {
         return (
             <div>
-                <p>Welcome to Todos List Component!!</p>
+                <p>Welcome to blog Component!!</p>
             </div>
         )
     }
