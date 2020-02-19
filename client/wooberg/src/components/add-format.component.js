@@ -16,7 +16,7 @@ export default class AddFormat extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            format_types: null,
+            format_types: [],
             format_title: '',
             format_rules: '',
             format_tags: '',
@@ -29,13 +29,13 @@ export default class AddFormat extends Component {
 
     componentDidMount() {
         fetch('http://localhost:8082/format-types')
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({ format_types: data })
-          console.log(data);
-        })
-        .catch(console.log)
-      }
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ format_types: data })
+                console.log('done getting format types');
+            })
+            .catch(console.log)
+    }
 
     onChangeFormatTitle(e) {
         this.setState({
@@ -80,10 +80,14 @@ export default class AddFormat extends Component {
         e.preventDefault();
         //Subit to express here
         this.setState({
-            todo_description: '',
-            todo_responsible: '',
-            todo_priority: '',
-            todo_completed: false
+            format_types: [],
+            format_title: '',
+            format_rules: '',
+            format_tags: [],
+            format_history: '',
+            format_creator: '',
+            format_banned: '',
+            format_restricted: ''
         })
     }
 
@@ -120,48 +124,18 @@ export default class AddFormat extends Component {
                         <textarea className="form-control" value={this.state.format_history} onChange={this.onChangeFormatHistory}>
                         </textarea>
                     </div>
-{/* 
+
                     <div className="form-group">
-                        <div className="form-check form-check-inline">
-                            <select class="custom-select custom-select-sm">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                            <input className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityLow"
-                                value="Low"
-                                checked={this.state.todo_priority === 'Low'}
-                                onChange={this.onChangeTodoPriority}
-                            />
-                            <label className="form-check-label">Low</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityMedium"
-                                value="Medium"
-                                checked={this.state.todo_priority === 'Medium'}
-                                onChange={this.onChangeTodoPriority}
-                            />
-                            <label className="form-check-label">Medium</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityHigh"
-                                value="High"
-                                checked={this.state.todo_priority === 'High'}
-                                onChange={this.onChangeTodoPriority}
-                            />
-                            <label className="form-check-label">High</label>
-                        </div>
-                    </div> */}
+                        <label>Format Types: </label>
+
+                        <select className="form-control" value={this.state.format_tags} onChange={this.onChangeFormatTags} multiple>
+                            {
+                            this.state.format_types.map(format_type =>
+                                <option key={format_type._id} value={format_type._id}>{format_type.displayName}</option>
+                            )
+                            }
+                        </select>
+                    </div>
 
                     <div className="form-group">
                         <input type="submit" value="Create Todo" className="btn btn-primary" />

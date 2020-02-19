@@ -19,10 +19,10 @@ app.get('/formats', (req, res) => {
         let cursor = collection.find({});
         cursor.toArray((err, docs) => {
             formats = docs;
-            client.close();
             res.send(formats);
         });
     });
+    client.close();
 });
 
 app.get('/format-types', (req, res) => {
@@ -32,8 +32,8 @@ app.get('/format-types', (req, res) => {
         let cursor = collection.find({});
         cursor.toArray((err, docs) => {
             formatTypes = docs;
-            client.close();
             res.send(formatTypes);
         });
     });
+    client.close();
 });
