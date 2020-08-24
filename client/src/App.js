@@ -40,7 +40,7 @@ function App() {
         <br />
 
         <Route path="/" exact component={BlogComponent} />
-        <Route path="/format/:id" component={FormatComponent} />
+        <Route exact path="/format/:id" component={FormatComponent} />
         <Route path="/add-format" component={AddFormatComponent} />
         <Route path="/formats" component={FormatsEncyclopediaComponent} />
       </div>

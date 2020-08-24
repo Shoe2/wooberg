@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./environment/default');
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID;
 
 const app = express();
 const port = process.env.PORT || 8082;
@@ -18,8 +19,19 @@ app.get('/formats', (req, res) => {
         const collection = client.db("WOOBERG").collection("Formats");
         let cursor = collection.find({});
         cursor.toArray((err, formats) => {
-            console.log(formats);
             res.send(formats);
+        });
+    });
+});
+
+app.get('/format', (req, res) => {
+    console.log(req.query.formatId);
+    connection.then(() => {
+        const collection = client.db("WOOBERG").collection("Formats");
+        let cursor = collection.findOne({_id: ObjectId(req.query.formatId)});
+        cursor.then((format) => {
+            console.log(format);
+            res.send(format);
         });
     });
 });

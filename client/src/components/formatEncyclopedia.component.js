@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import FormatComponent from './format.component';
+import { Link } from "react-router-dom";
+
 
 export default class FormatsEncyclopediaComponent extends Component {
 
@@ -36,7 +39,7 @@ export default class FormatsEncyclopediaComponent extends Component {
                             <p className="card-text">{format_type.desc}</p>
                             <ul>
                                 {this.state.formats.filter((format)=> format.tags.includes(format_type._id)).map((format) => (
-                                    <li className="card-title">{format.title}</li>
+                                    <li className="card-title" key={format._id}><Link to={"/format/" + format._id}>{format.title}</Link></li>
                                 ))}
                             </ul>
                         </div>
