@@ -22,10 +22,10 @@ export default class FormatsEncyclopediaComponent extends Component {
         return (
             <div style={{ marginTop: 10 }}>
                 {this.state.format_types.map((format_type) => (
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">{format_type.displayName}</h3>
-                            <p class="card-text">{format_type.desc}</p>
+                    <div className="card" key={format_type._id}>
+                        <div className="card-body">
+                            <h3 className="card-title">{format_type.displayName}</h3>
+                            <p className="card-text">{format_type.desc}</p>
                         </div>
                     </div>
                 ))}
