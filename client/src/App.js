@@ -21,14 +21,18 @@ function App() {
         </a>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link to="/" className="navbar-brand">WOOBERG: The Encyclopedia of Magic Variant Formats</Link>
-          <br/>
-          <div className="collpase navbar-collapse">
+          <br />
+          <div>
             <ul className="navbar-nav mr-auto">
               <li className="navbar-item">
                 <Link to="/" className="nav-link">Blog</Link>
               </li>
               <li className="navbar-item">
                 <Link to="/add-format" className="nav-link">Add Format</Link>
+              </li>
+              <li className="navbar-item">
+                <div class="nav-link">Formats</div>
+                {/* <Submenu /> */}
               </li>
             </ul>
           </div>
