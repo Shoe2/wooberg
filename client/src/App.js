@@ -19,22 +19,17 @@ function App() {
       <div className="container">
         <a href="/" target="_blank">
           <img id="banner" src={navBar} alt="WOOBERG: The Encyclopedia of Magic Variant Formats" />
-        </a>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link to="/" className="navbar-brand">WOOBERG: The Encyclopedia of Magic Variant Formats</Link>
-          <br />
-          <div>
-            <ul className="navbar-nav mr-auto">
-              <li className="navbar-item">
-                <Link to="/" className="nav-link">Blog</Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/add-format" className="nav-link">Add Format</Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/formats" className="nav-link">Format Encyclopedia</Link>
-              </li>
-            </ul>
+        </a>
+        <nav className="navbar navbar-light bg-light">
+          <div className="navbar-item">
+            <Link to="/" className="nav-link">Blog</Link>
+          </div>
+          <div className="navbar-item">
+            <Link to="/add-format" className="nav-link">Add Format</Link>
+          </div>
+          <div className="navbar-item">
+            <Link to="/formats" className="nav-link">Format Encyclopedia</Link>
           </div>
         </nav>
         <br />
