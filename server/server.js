@@ -14,12 +14,10 @@ app.use(cors());
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 app.get('/formats', (req, res) => {
-    let formats;
     connection.then(() => {
         const collection = client.db("WOOBERG").collection("Formats");
         let cursor = collection.find({});
-        cursor.toArray((err, docs) => {
-            formats = docs;
+        cursor.toArray((err, formats) => {
             res.send(formats);
         });
     });
