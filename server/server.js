@@ -6,7 +6,8 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const port = process.env.PORT || 8082;
 const uri = config.mongoString;
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const connection = client.connect();
 
 app.use(cors());
 
@@ -14,7 +15,7 @@ app.listen(port, () => console.log(`Server running on port ${port}`));
 
 app.get('/formats', (req, res) => {
     let formats;
-    client.connect(() => {
+    connection.then(() => {
         const collection = client.db("WOOBERG").collection("Formats");
         let cursor = collection.find({});
         cursor.toArray((err, docs) => {
@@ -22,18 +23,14 @@ app.get('/formats', (req, res) => {
             res.send(formats);
         });
     });
-    client.close();
 });
 
 app.get('/format-types', (req, res) => {
-    let formatTypes;
-    client.connect(() => {
+    connection.then(() => {
         const collection = client.db("WOOBERG").collection("FormatTypes");
         let cursor = collection.find({});
-        cursor.toArray((err, docs) => {
-            formatTypes = docs;
+        cursor.toArray((err, formatTypes) => {
             res.send(formatTypes);
         });
     });
-    client.close();
 });

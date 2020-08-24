@@ -6,6 +6,7 @@ import AddFormatComponent from "./components/add-format.component";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import navBar from "./assets/banner.jpg";
+import FormatsEncyclopediaComponent from './components/formatEncyclopedia.component';
 
 
 function App() {
@@ -31,8 +32,7 @@ function App() {
                 <Link to="/add-format" className="nav-link">Add Format</Link>
               </li>
               <li className="navbar-item">
-                <div class="nav-link">Formats</div>
-                {/* <Submenu /> */}
+                <Link to="/formats" className="nav-link">Format Encyclopedia</Link>
               </li>
             </ul>
           </div>
@@ -42,6 +42,7 @@ function App() {
         <Route path="/" exact component={BlogComponent} />
         <Route path="/format/:id" component={FormatComponent} />
         <Route path="/add-format" component={AddFormatComponent} />
+        <Route path="/formats" component={FormatsEncyclopediaComponent} />
       </div>
 
     </Router>
