@@ -24,8 +24,19 @@ app.get('/formats', (req, res) => {
     });
 });
 
+/*FORMAT TYPES */
+app.get('/format-types', (req, res) => {
+    connection.then(() => {
+        const collection = client.db("WOOBERG").collection("FormatTypes");
+        let cursor = collection.find({});
+        cursor.toArray((err, formatTypes) => {
+            res.send(formatTypes);
+        });
+    });
+});
+
+/*FORMAT*/
 app.get('/format', (req, res) => {
-    console.log(req.query.formatId);
     connection.then(() => {
         const collection = client.db("WOOBERG").collection("Formats");
         let cursor = collection.findOne({_id: ObjectId(req.query.formatId)});
@@ -36,12 +47,18 @@ app.get('/format', (req, res) => {
     });
 });
 
-app.get('/format-types', (req, res) => {
+app.post('/format', (req, res) => {
     connection.then(() => {
-        const collection = client.db("WOOBERG").collection("FormatTypes");
-        let cursor = collection.find({});
-        cursor.toArray((err, formatTypes) => {
-            res.send(formatTypes);
-        });
+        const collection = client.db("WOOBERG").collection("Formats");
+        collection.insert(req.body.formatData); 
+        res.send();
+    });
+});
+
+app.put('/format', (req, res) => {
+    connection.then(() => {
+        const collection = client.db("WOOBERG").collection("Formats");
+        collection.updateOne({_id: ObjectId(req.query.formatId)}, req.body.formatData); 
+        res.send();
     });
 });
