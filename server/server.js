@@ -18,6 +18,7 @@ app.get('/formats', (req, res) => {
         const collection = client.db("WOOBERG").collection("Formats");
         let cursor = collection.find({});
         cursor.toArray((err, formats) => {
+            console.log(formats);
             res.send(formats);
         });
     });
