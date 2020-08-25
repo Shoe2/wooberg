@@ -82,7 +82,24 @@ export default class AddFormat extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        //Subit to express here
+
+        fetch("http://localhost:8082/format", {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "accept": "application/json",
+            },
+            "body": JSON.stringify({
+                "title": this.state.format_title,
+                "Rules": this.state.format_rules,
+                "tags" : this.state.format_tags,
+                "history" : this.state.format_history,
+                "creator" : this.state.format_creator,
+                "BannedList" : this.state.format_banned,
+                "RestrictedList": this.state.format_restricted
+            })
+        }).then(()=>{}, (error)=>{console.log(error)})
+
         this.setState({
             format_types: [],
             format_title: '',
@@ -140,18 +157,9 @@ export default class AddFormat extends Component {
                             getOptionLabel={option => option.displayName}
                             getOptionValue={option => option._id}
                         />
-                        {/* <select className="form-control" value={this.state.format_tags} multiple>
-                            {
-                                this.state.format_types.map(format_type =>
-                                    <option key={format_type._id} value={format_type._id}>
-                                        {format_type.displayName}
-                                    </option>
-                                )
-                            }
-                        </select> */}
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create Todo" className="btn btn-primary" />
+                        <input type="submit" value="Save" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

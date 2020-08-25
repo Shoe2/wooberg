@@ -48,17 +48,19 @@ app.get('/format', (req, res) => {
 });
 
 app.post('/format', (req, res) => {
+    console.log(req);
     connection.then(() => {
         const collection = client.db("WOOBERG").collection("Formats");
-        collection.insert(req.body.formatData); 
+        //collection.insert(req.body.formatData); 
         res.send();
     });
 });
 
 app.put('/format', (req, res) => {
+    //console.log(req);
     connection.then(() => {
         const collection = client.db("WOOBERG").collection("Formats");
-        collection.updateOne({_id: ObjectId(req.query.formatId)}, req.body.formatData); 
+        //collection.updateOne({_id: ObjectId(req.query.formatId)}, req.body.formatData); 
         res.send();
     });
 });
