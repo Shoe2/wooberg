@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 export default class AddFormat extends Component {
 
@@ -19,7 +23,7 @@ export default class AddFormat extends Component {
             format_types: [],
             format_title: '',
             format_rules: '',
-            format_tags: '',
+            format_tags: [],
             format_history: '',
             format_creator: '',
             format_banned: '',
@@ -127,16 +131,25 @@ export default class AddFormat extends Component {
 
                     <div className="form-group">
                         <label>Format Types: </label>
-
-                        <select className="form-control" value={this.state.format_tags} onChange={this.onChangeFormatTags} multiple>
+                        <Select
+                            closeMenuOnSelect={false}
+                            components={animatedComponents}
+                            defaultValue={this.state.format_tags}
+                            isMulti
+                            options={this.state.format_types}
+                            getOptionLabel={option => option.displayName}
+                            getOptionValue={option => option._id}
+                        />
+                        {/* <select className="form-control" value={this.state.format_tags} multiple>
                             {
-                            this.state.format_types.map(format_type =>
-                                <option key={format_type._id} value={format_type._id}>{format_type.displayName}</option>
-                            )
+                                this.state.format_types.map(format_type =>
+                                    <option key={format_type._id} value={format_type._id}>
+                                        {format_type.displayName}
+                                    </option>
+                                )
                             }
-                        </select>
+                        </select> */}
                     </div>
-
                     <div className="form-group">
                         <input type="submit" value="Create Todo" className="btn btn-primary" />
                     </div>
