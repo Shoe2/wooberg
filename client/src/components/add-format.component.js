@@ -19,7 +19,7 @@ export default class AddFormat extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
 
-        this.state = {
+        this.state = { 
             format_types: [],
             format_title: '',
             format_rules: '',
