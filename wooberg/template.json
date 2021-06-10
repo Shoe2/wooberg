@@ -1,0 +1,14 @@
+{"title": "",
+    "Rules": "",
+    "tags": [{
+        "$oid": "5e1a6659dae7ef1c1036aa96",//Play Variant
+        "$oid": "5e1a6659dae7ef1c1036aa97",//Deckbuilding Variant
+        "$oid": "5e1a6659dae7ef1c1036aa98",//Limited Variant
+        "$oid": "5e1a6659dae7ef1c1036aa99",//RPG Format
+        "$oid": "5e1a6659dae7ef1c1036aa9a"//Solo Variant
+    }],
+    "history": "From Beebleboy",
+    "creator": "unknown",
+    "BannedList": "none",
+    "RestrictedList": "none",
+    "formatImgURL": "/static/media/5-colorStar.45a9aaa8.jpg"}
